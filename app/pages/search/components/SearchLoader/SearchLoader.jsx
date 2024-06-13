@@ -25,6 +25,7 @@ export const SearchLoader = ({columns, windowWidth, items}) => {
       columnWrapperStyle={{gap: 10}}
       data={data}
       renderItem={renderItem}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

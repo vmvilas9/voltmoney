@@ -1,9 +1,12 @@
 import {StyleSheet} from 'react-native';
 
 export const searchStyles = StyleSheet.create({
-  flatlistContainer: (error, images, height) => ({
+  flatlistContainer: {
     paddingBottom: 150,
-  }),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   textInput: {
     borderWidth: 1,
     borderRadius: 6,
@@ -17,6 +20,7 @@ export const searchStyles = StyleSheet.create({
     paddingHorizontal: 10,
     display: 'flex',
     width: '100%',
+    height: '100%',
   },
   listItem: width => ({
     width: width,

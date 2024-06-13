@@ -4,11 +4,7 @@ import React from 'react';
 
 export const SearchHeader = ({query, onQueryChange}) => {
   return (
-    <View
-      onLayout={event => {
-        const {x, y, width, height} = event.nativeEvent.layout;
-        console.log(width, height);
-      }}>
+    <View>
       <Text style={searchStyles.text}>Search Images</Text>
       <TextInput
         style={searchStyles.textInput}

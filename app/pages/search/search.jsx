@@ -28,11 +28,8 @@ export const Search = () => {
   const IMAGE_WIDTH = (WINDOW_WIDTH - 20 - (COLUMNS - 1) * 10) / COLUMNS;
   const timer = useRef(null);
 
-  console.log('device', WINDOW_WIDTH, WINDOW_HEIGHT);
-
   const fetchData = useCallback(
     async (querySearch = '', pullToRefresh = false) => {
-      console.log('fetchdata', querySearch, pullToRefresh);
       pullToRefresh ? setPullRefreshLoading(true) : setIsLoading(true);
       try {
         const response = await getRequest(
@@ -63,7 +60,6 @@ export const Search = () => {
   );
 
   useEffect(() => {
-    console.log('useEffect');
     fetchData();
   }, [fetchData]);
 
@@ -87,13 +83,11 @@ export const Search = () => {
     timer.current = setTimeout(() => {
       setImages([]);
       currentPage.current = 1;
-      console.log('onQueryChange');
       fetchData(text);
     }, 300);
   };
 
   const onEndReached = () => {
-    console.log('onEndReached');
     if (
       currentPage.current < totalPages.current &&
       !isLoading &&
@@ -111,7 +105,6 @@ export const Search = () => {
   };
 
   const handleContentSizeChange = (contentWidth, contentHeight) => {
-    console.log('flatlist', contentHeight);
     if (contentHeight < WINDOW_HEIGHT) {
       onEndReached();
     }
@@ -125,16 +118,13 @@ export const Search = () => {
       ) : (
         <FlatList
           style={{
-            height: WINDOW_HEIGHT,
+            flexGrow: 0,
+            // height: WINDOW_HEIGHT,
           }}
           ListEmptyComponent={
             error ? <ErrorComponent /> : <EmptyComponent text={query} />
           }
-          contentContainerStyle={searchStyles.flatlistContainer(
-            error,
-            images,
-            WINDOW_HEIGHT - 100,
-          )}
+          contentContainerStyle={searchStyles.flatlistContainer}
           numColumns={COLUMNS}
           onRefresh={handleRefresh}
           refreshing={pullRefreshLoading}
