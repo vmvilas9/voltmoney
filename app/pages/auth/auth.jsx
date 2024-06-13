@@ -12,9 +12,8 @@ export const Auth = ({children}) => {
   useEffect(() => {
     rnBiometrics.isSensorAvailable().then(resultObject => {
       const {available} = resultObject;
-      setAuthSuccess(true);
-      // !available && setAuthSuccess(true);
-      // setSensorAvailable(available);
+      !available && setAuthSuccess(true);
+      setSensorAvailable(available);
     });
   }, [rnBiometrics]);
 
